@@ -163,7 +163,13 @@ export default function NewJobPage() {
             label="Scheduled Date"
             name="scheduledDate"
             type="date"
-            value={formData.scheduledDate || ''}
+            value={
+			  formData.scheduledDate
+				? typeof formData.scheduledDate === 'string'
+				  ? formData.scheduledDate
+				  : formData.scheduledDate.toISOString().split('T')[0]
+				: ''
+			}
             onChange={handleInputChange}
           />
 
